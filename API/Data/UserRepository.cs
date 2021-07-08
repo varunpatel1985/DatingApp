@@ -19,11 +19,11 @@ namespace API.Data
             return await _context.Users.FindAsync(id);
         }
 
-       async Task<AppUser> IUserRepository.GetUserByUsernameAsync(string username)
+       async Task<AppUser> IUserRepository.GetUserByusernameAsync(string username)
         {
             return await _context.Users
             .Include(p=> p.Photos)
-            .SingleOrDefaultAsync(x=> x.UserName == username);
+            .SingleOrDefaultAsync(x=> x.username == username);
         }
 
         async Task<IEnumerable<AppUser>> IUserRepository.GetUsersAsync()

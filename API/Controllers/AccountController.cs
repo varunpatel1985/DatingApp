@@ -24,11 +24,11 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if (await UserExist(registerDto.UserName)) return BadRequest("Username is taken");
+            if (await UserExist(registerDto.username)) return BadRequest("username is taken");
             using var hmac = new HMACSHA512();
             var user = new AppUser
             {
-                UserName = registerDto.UserName,
+                username = registerDto.username,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 PasswordSalt = hmac.Key
             };
@@ -37,7 +37,7 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
             return new UserDto
             {
-                UserName = user.UserName,
+                username = user.username,
                 Token = _tokenService.CreateToken(user)
             };
         }
@@ -45,7 +45,7 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> login(LoginDto loginDto)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == loginDto.UserName);
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.username == loginDto.username);
 
             if (user == null) return Unauthorized("Invalid username");
 
@@ -60,7 +60,7 @@ namespace API.Controllers
 
            return new UserDto
             {
-                UserName = user.UserName,
+                username = user.username,
                 Token = _tokenService.CreateToken(user)
             };
 
@@ -70,9 +70,9 @@ namespace API.Controllers
         }
 
 
-        private async Task<bool> UserExist(string userName)
+        private async Task<bool> UserExist(string username)
         {
-            return await _context.Users.AnyAsync(x => x.UserName.ToLower() == userName.ToLower());
+            return await _context.Users.AnyAsync(x => x.username.ToLower() == username.ToLower());
         }
     }
 }

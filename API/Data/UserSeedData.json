@@ -1,6 +1,6 @@
 [
     {
-        "UserName": "Shana",
+        "username": "Shana",
         "Gender": "female",
         "DateOfBirth": "1984-11-28",
         "KnownAs": "Shana",
@@ -19,7 +19,7 @@
         ]
     },
     {
-        "UserName": "Adriana",
+        "username": "Adriana",
         "Gender": "female",
         "DateOfBirth": "1971-03-08",
         "KnownAs": "Adriana",
@@ -38,7 +38,7 @@
         ]
     },
     {
-        "UserName": "Phyllis",
+        "username": "Phyllis",
         "Gender": "female",
         "DateOfBirth": "1996-05-26",
         "KnownAs": "Phyllis",
@@ -57,7 +57,7 @@
         ]
     },
     {
-        "UserName": "Tabitha",
+        "username": "Tabitha",
         "Gender": "female",
         "DateOfBirth": "1972-04-02",
         "KnownAs": "Tabitha",
@@ -76,7 +76,7 @@
         ]
     },
     {
-        "UserName": "Lorna",
+        "username": "Lorna",
         "Gender": "female",
         "DateOfBirth": "1955-05-25",
         "KnownAs": "Lorna",
@@ -95,7 +95,7 @@
         ]
     },
     {
-        "UserName": "Hawkins",
+        "username": "Hawkins",
         "Gender": "male",
         "DateOfBirth": "1989-04-28",
         "KnownAs": "Hawkins",
@@ -114,7 +114,7 @@
         ]
     },
     {
-        "UserName": "Battle",
+        "username": "Battle",
         "Gender": "male",
         "DateOfBirth": "1965-06-25",
         "KnownAs": "Battle",
@@ -133,7 +133,7 @@
         ]
     },
     {
-        "UserName": "George",
+        "username": "George",
         "Gender": "male",
         "DateOfBirth": "1962-11-22",
         "KnownAs": "George",
@@ -152,7 +152,7 @@
         ]
     },
     {
-        "UserName": "Pena",
+        "username": "Pena",
         "Gender": "male",
         "DateOfBirth": "1955-10-16",
         "KnownAs": "Pena",
@@ -171,7 +171,7 @@
         ]
     },
     {
-        "UserName": "Erickson",
+        "username": "Erickson",
         "Gender": "male",
         "DateOfBirth": "1974-09-23",
         "KnownAs": "Erickson",
