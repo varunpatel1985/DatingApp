@@ -21,7 +21,7 @@ model:any ={}
 
   ngOnInit(): void {
    
-    
+    console.log("accountService.currentUser$",this.accountService.currentUser$.source);
   }
 
  
