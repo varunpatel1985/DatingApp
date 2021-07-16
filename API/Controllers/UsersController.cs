@@ -89,7 +89,7 @@ namespace API.Controllers
             user.Photos.Add(photo);
             if(await _userRepository.SaveAllAsync())    
             {              
-                return CreatedAtRoute("GetUser",new {username = user.username} ,_mapper.Map<PhotoDto>(photo));
+                return CreatedAtRoute("GetUser",new {username = user.Username} ,_mapper.Map<PhotoDto>(photo));
             }        
                
 
