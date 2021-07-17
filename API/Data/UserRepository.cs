@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.Entities;
+using API.Helpers;
 using API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,11 +29,29 @@ namespace API.Data
             .SingleOrDefaultAsync(x=> x.Username == username);
         }
 
-        async Task<IEnumerable<AppUser>> IUserRepository.GetUsersAsync()
+        async Task<PagedList<AppUser>> IUserRepository.GetUsersAsync(UserParams userParams)
         {
-            return await _context.Users
+            var query = _context.Users
             .Include(p=> p.Photos)
-            .ToListAsync();
+            .AsNoTracking()
+            .AsQueryable();
+
+            query = query.Where(u=> u.Username != userParams.CurrentUsername);
+            query = query.Where(u=> u.Gender == userParams.Gender);
+
+            var minDob = DateTime.Today.AddYears(-userParams.MaxAge -1);
+            var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
+
+            query = query.Where(u=> u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
+            query = userParams.OrderBy switch 
+            {
+                "created" => query.OrderByDescending(u=> u.Created),
+                _=> query.OrderByDescending(u=> u.LastActive)
+            };
+           
+
+            return await PagedList<AppUser>.CreateAsync(query, userParams.PageNumber,userParams.PageSize);
+           
         }
 
        async Task<bool> IUserRepository.SaveAllAsync()
